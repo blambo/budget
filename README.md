@@ -1,0 +1,1 @@
+install browserify and babel globally via npm
