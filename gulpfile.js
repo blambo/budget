@@ -1,20 +1,22 @@
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
+var concat = require('gulp-concat');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var babel = require('babelify');
 
-function compile (watch) {
-  var bundler = watchify(browserify('./src/index.js', { debug: true }).transform(babel));
+function build (file, watch) {
+  var bundler = watchify(browserify('./src/' + file, { debug: true }).transform(babel));
 
   function rebundle() {
     bundler.bundle()
       .on('error', function(err) { console.error(err); this.emit('end'); })
-      .pipe(source('build.js'))
+      .pipe(source(file))
       .pipe(buffer())
       .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(concat('build.js'))
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest('./build'));
   };
@@ -29,11 +31,11 @@ function compile (watch) {
   rebundle();
 };
 
-function watch() {
-  return compile(true);
+function watch(source) {
+  return build(source, true);
 }
 
-gulp.task('build', function() { return compile(); });
-gulp.task('watch', function() { return watch();   });
+gulp.task('build', function() { return build('index.js'); });
+gulp.task('watch', function() { return watch('index.js');   });
 
 gulp.task('default', ['watch']);
