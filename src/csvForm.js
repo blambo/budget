@@ -1,23 +1,25 @@
-var CsvForm = React.createClass({
-  onCsv: function(event) {
-    event.preventDefault();
+export default (React) => {
+  return React.createClass({
+    onCsv: function(event) {
+      event.preventDefault();
 
-    var csv = this.refs.csv.value.trim();
-    if (!csv) {
+      var csv = this.refs.csv.value.trim();
+      if (!csv) {
+        return;
+      }
+      this.props.onCsvSubmit(csv);
+      this.refs.csv.value = '';
       return;
+    },
+    render: function() {
+      return (
+        <form onSubmit={this.onCsv}>
+          <textarea
+            placeholder="Insert your CSV here..."
+            ref="csv"></textarea>
+          <input type="submit" value="Post" />
+        </form>
+      );
     }
-    this.props.onCsvSubmit(csv);
-    this.refs.csv.value = '';
-    return;
-  },
-  render: function() {
-    return (
-      <form onSubmit={this.onCsv}>
-        <textarea
-          placeholder="Insert your CSV here..."
-          ref="csv"></textarea>
-        <input type="submit" value="Post" />
-      </form>
-    );
-  }
-});
+  });
+};
