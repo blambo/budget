@@ -10,7 +10,7 @@ var less = require('gulp-less');
 var path = require('path');
 
 function build (file, watch) {
-  var bundler = watchify(browserify('./src/' + file, { debug: true }).transform(babel));
+  var bundler = watchify(browserify('./frontend/' + file, { debug: true }).transform(babel));
 
   function rebundle() {
     bundler.bundle()
@@ -38,7 +38,7 @@ function watch(source) {
 }
 
 gulp.task('less', function () {
-  return gulp.src('./src/style/main.less')
+  return gulp.src('./frontend/style/main.less')
     .pipe(less({
       // paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
