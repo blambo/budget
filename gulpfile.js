@@ -45,7 +45,12 @@ gulp.task('less', function () {
     .pipe(gulp.dest('./build/'));
 });
 
+gulp.task('index', function () {
+  return gulp.src('./index.html')
+    .pipe(gulp.dest('build'));
+});
+
 gulp.task('build', function() { return build('index.js'); });
-gulp.task('watch', function() { return watch('index.js');   });
+gulp.task('watch', function() { return watch('index.js'); });
 
 gulp.task('default', ['watch']);
