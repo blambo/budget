@@ -13,8 +13,9 @@ export default (React) => {
     },
     render: function() {
       return (
-        <form onSubmit={this.onCsv}>
+        <form className="csv-form" onSubmit={this.onCsv}>
           <textarea
+            className="csv-textarea"
             placeholder="Insert your CSV here..."
             ref="csv"></textarea>
           <input type="submit" value="Post" />

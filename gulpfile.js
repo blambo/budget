@@ -6,6 +6,8 @@ var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var babel = require('babelify');
+var less = require('gulp-less');
+var path = require('path');
 
 function build (file, watch) {
   var bundler = watchify(browserify('./src/' + file, { debug: true }).transform(babel));
@@ -34,6 +36,14 @@ function build (file, watch) {
 function watch(source) {
   return build(source, true);
 }
+
+gulp.task('less', function () {
+  return gulp.src('./src/style/main.less')
+    .pipe(less({
+      // paths: [ path.join(__dirname, 'less', 'includes') ]
+    }))
+    .pipe(gulp.dest('./build/'));
+});
 
 gulp.task('build', function() { return build('index.js'); });
 gulp.task('watch', function() { return watch('index.js');   });
