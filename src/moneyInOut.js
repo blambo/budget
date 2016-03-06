@@ -28,13 +28,13 @@ export default (React) => {
         <table className="moneyInOut">
         <tbody>
           <tr>
-            <td>Money in:</td><td>{this.state.in}</td>
+            <td>Money in:</td><td>{this.state.in.toFixed(2)}</td>
           </tr>
           <tr>
-            <td>Money out:</td><td>{this.state.out}</td>
+            <td>Money out:</td><td>{this.state.out.toFixed(2)}</td>
           </tr>
           <tr>
-            <td>Difference:</td><td>{this.state.in + this.state.out}</td>
+            <td>Difference:</td><td>{(this.state.in + this.state.out).toFixed(2)}</td>
           </tr>
         </tbody>
         </table>

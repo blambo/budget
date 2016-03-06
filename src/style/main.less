@@ -1,6 +1,24 @@
 .budget {
-  .moneyInOut {
 
+  font-family: sans-serif;
+
+  .moneyInOut {
+    @moneyBoxColor:#FF4136;
+    width: 200px;
+    border: 1px solid fade(@moneyBoxColor, 50%);
+    background-color: fade(@moneyBoxColor, 25%);
+    margin: 30px;
+
+    tr:nth-child(even) {
+      background-color: fade(@moneyBoxColor, 10%);
+    }
+
+    td:first-child {
+      width: 50%;
+    }
+    td:last-child {
+      text-align: right;
+    }
   }
 
   .lineItemList {
