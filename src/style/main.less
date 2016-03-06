@@ -21,7 +21,12 @@
     }
   }
 
-  .lineItemList {
+  .LineItemList {
     width: 100%;
+    @lineItemColor: #000;
+
+    tr:nth-child(even) {
+      background-color: fade(@lineItemColor, 20%);
+    }
   }
 }
